@@ -2,10 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const shortid = require("shortid");
+var cors = require("cors");
 
 const app = express();
 app.use(bodyParser.json());
 
+app.use(cors());
 app.use("/", express.static(__dirname + "/build"));
 app.get("/", (req, res) => {
   return res.json({ success: true, message: "api connected succesffuly" });
