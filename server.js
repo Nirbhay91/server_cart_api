@@ -8,6 +8,12 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(cors());
+let allowCrossDomain = function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+};
+app.use(allowCrossDomain);
 app.use("/", express.static(__dirname + "/build"));
 app.get("/", (req, res) => {
   return res.json({ success: true, message: "api connected succesffuly" });
